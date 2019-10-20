@@ -33,7 +33,7 @@
                                 {{ csrf_field() }}
                             </form>
                         @else
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
                         @endauth
 
                     </li>
