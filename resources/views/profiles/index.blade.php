@@ -9,10 +9,10 @@
             <div class="col-6 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>{{ $user->username }}</h1>
-                    <a href="">Add New Post</a>
+                    <a href="{{ route('posts.create') }}">Add New Post</a>
                 </div>
                 <div class="d-flex">
-                    <div class="pr-5"><strong>53</strong> posts</div>
+                    <div class="pr-5"><strong>{{ count($user->posts) }}</strong> posts</div>
                     <div class="pr-5"><strong>160</strong> followers</div>
                     <div class="pr-5"><strong>291</strong> following</div>
                 </div>
@@ -21,16 +21,17 @@
                 <div><a href="#">{{ $user->profile->url }}</a></div>
             </div>
         </div>
+
         <div class="row pt-5 justify-content-center">
-            <div class="col" align="right">
-                <img src="https://scontent-iad3-1.cdninstagram.com/vp/2be59a8d677469a63bf75b90e61d8a31/5E5F8C8B/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/69358796_168510640869091_7151890652198426599_n.jpg?_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=107" class="w-75">
-            </div>
-            <div class="col" align="center">
-                <img src="https://scontent-iad3-1.cdninstagram.com/vp/2be59a8d677469a63bf75b90e61d8a31/5E5F8C8B/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/69358796_168510640869091_7151890652198426599_n.jpg?_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=107" class="w-75">
-            </div>
-            <div class="col" align="left">
-                <img src="https://scontent-iad3-1.cdninstagram.com/vp/2be59a8d677469a63bf75b90e61d8a31/5E5F8C8B/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/69358796_168510640869091_7151890652198426599_n.jpg?_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=107" class="w-75">
-            </div>
+
+            @foreach($user->posts as $post)
+                <div class="col-12 col-md-4 pb-4">
+                    <a href="/p/{{ $post->id }}">
+                        <img src="/storage/{{ $post->image }}" class="w-75">
+                    </a>
+                </div>
+            @endforeach
+
         </div>
     </div>
 @endsection
