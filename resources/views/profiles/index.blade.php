@@ -4,12 +4,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-5 pt-5" align ="center">
-                <img src="https://scontent-iad3-1.cdninstagram.com/vp/dd1c97d1ae921b1373e925e906bd26a0/5E2CE3E5/t51.2885-19/s150x150/20686955_269260230227541_8595081543368572928_a.jpg?_nc_ht=scontent-iad3-1.cdninstagram.com" class="rounded-circle">
+                <img src="/storage/{{ $user->profile->image }}" class="rounded-circle w-50">
             </div>
             <div class="col-6 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>{{ $user->username }}</h1>
+
+                    @can('update', $user->profile)
                     <a href="{{ route('posts.create') }}">Add New Post</a>
+                    @endcan
+
+                    @can('update', $user->profile)
+                        <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+                    @endcan
+
                 </div>
                 <div class="d-flex">
                     <div class="pr-5"><strong>{{ count($user->posts) }}</strong> posts</div>

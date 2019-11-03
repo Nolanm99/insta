@@ -27,6 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->profile()->create([
+                'title' => $user->username,
+                'image' => '/profile/default.jpg'
+            ]);
+        });
+    }
+
     public function profile() {
         return $this->hasOne(Profile::class);
     }

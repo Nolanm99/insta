@@ -39,7 +39,7 @@
                     </li>
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
                     @endguest
                     <li class="nav-item dropdown">
