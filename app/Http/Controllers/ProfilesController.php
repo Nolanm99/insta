@@ -55,4 +55,8 @@ class ProfilesController extends Controller
         return redirect("/profile/" . $user->id );
     }
 
+    public function feed() {
+        return view('profiles.feed');
+    }
+
 }

@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="row pt-5 justify-content-center">
+        <div class="row pt-5">
 
             @foreach($user->posts as $post)
                 <div class="col-12 col-md-4 pb-4">
