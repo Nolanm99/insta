@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Intervention\Image\Facades\Image;
+use mysql_xdevapi\Collection;
 
 class ProfilesController extends Controller
 {
@@ -56,7 +57,21 @@ class ProfilesController extends Controller
     }
 
     public function feed() {
-        return view('profiles.feed');
+        $user = auth()->user();
+        $feed_posts = [];
+
+        foreach ($user->following as $followed_profile) {
+            foreach ($followed_profile->user->posts as $followed_user_post) {
+                array_push($feed_posts,$followed_user_post);
+            }
+        }
+
+        $feed_posts = collect($feed_posts)->sortBy('created_at')->reverse();
+
+        return view('profiles.feed', [
+            'user' => $user,
+            'feed_posts' => $feed_posts
+        ]);
     }
 
 }
